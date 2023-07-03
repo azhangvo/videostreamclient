@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		476735B9A1C637CB60A7AADB /* Pods_VideoStreamClient_VideoStreamClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27A4B8F5D7BB30E1B01A3F4 /* Pods_VideoStreamClient_VideoStreamClientUITests.framework */; };
+		579EF84393BE63E244C8EF35 /* Pods_VideoStreamClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F08E2D6098388E14F167F45 /* Pods_VideoStreamClientTests.framework */; };
+		5DE17E4C2531CB448EF5E7CC /* Pods_VideoStreamClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD49E0692675C501066B991 /* Pods_VideoStreamClient.framework */; };
+		B715C31029D8222C00E09095 /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B715C30F29D8222C00E09095 /* VideoPreviewView.swift */; };
+		B715C31229D8E2B900E09095 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B715C31129D8E2B900E09095 /* Utils.swift */; };
 		B75AAB47298F31D900F91C21 /* VideoStreamClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB46298F31D900F91C21 /* VideoStreamClientApp.swift */; };
 		B75AAB49298F31D900F91C21 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB48298F31D900F91C21 /* ContentView.swift */; };
 		B75AAB4B298F31DC00F91C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75AAB4A298F31DC00F91C21 /* Assets.xcassets */; };
@@ -14,6 +19,7 @@
 		B75AAB58298F31DC00F91C21 /* VideoStreamClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB57298F31DC00F91C21 /* VideoStreamClientTests.swift */; };
 		B75AAB62298F31DC00F91C21 /* VideoStreamClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB61298F31DC00F91C21 /* VideoStreamClientUITests.swift */; };
 		B75AAB64298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB63298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift */; };
+		B75AAB71298F36AF00F91C21 /* TCPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB70298F36AF00F91C21 /* TCPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		297355F841A0CF36FF5BF0E4 /* Pods-VideoStreamClient-VideoStreamClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStreamClient-VideoStreamClientUITests.release.xcconfig"; path = "Target Support Files/Pods-VideoStreamClient-VideoStreamClientUITests/Pods-VideoStreamClient-VideoStreamClientUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2F08E2D6098388E14F167F45 /* Pods_VideoStreamClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoStreamClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4581A8EF21CCF37EBE724A92 /* Pods-VideoStreamClient-VideoStreamClientUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStreamClient-VideoStreamClientUITests.debug.xcconfig"; path = "Target Support Files/Pods-VideoStreamClient-VideoStreamClientUITests/Pods-VideoStreamClient-VideoStreamClientUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5CD49E0692675C501066B991 /* Pods_VideoStreamClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoStreamClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6629861AB634A0CF9A41A171 /* Pods-VideoStreamClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStreamClientTests.release.xcconfig"; path = "Target Support Files/Pods-VideoStreamClientTests/Pods-VideoStreamClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		AF7D81ACB2DC586A01D195EA /* Pods-VideoStreamClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStreamClientTests.debug.xcconfig"; path = "Target Support Files/Pods-VideoStreamClientTests/Pods-VideoStreamClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B715C30C29D81B8600E09095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B715C30F29D8222C00E09095 /* VideoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
+		B715C31129D8E2B900E09095 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B75AAB43298F31D900F91C21 /* VideoStreamClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoStreamClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75AAB46298F31D900F91C21 /* VideoStreamClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamClientApp.swift; sourceTree = "<group>"; };
 		B75AAB48298F31D900F91C21 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +59,10 @@
 		B75AAB5D298F31DC00F91C21 /* VideoStreamClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoStreamClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75AAB61298F31DC00F91C21 /* VideoStreamClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamClientUITests.swift; sourceTree = "<group>"; };
 		B75AAB63298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamClientUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B75AAB70298F36AF00F91C21 /* TCPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPClient.swift; sourceTree = "<group>"; };
+		CEA2D334B0E9F06992F4286C /* Pods-VideoStreamClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStreamClient.debug.xcconfig"; path = "Target Support Files/Pods-VideoStreamClient/Pods-VideoStreamClient.debug.xcconfig"; sourceTree = "<group>"; };
+		D20ABF3B54312FD6D0557960 /* Pods-VideoStreamClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStreamClient.release.xcconfig"; path = "Target Support Files/Pods-VideoStreamClient/Pods-VideoStreamClient.release.xcconfig"; sourceTree = "<group>"; };
+		D27A4B8F5D7BB30E1B01A3F4 /* Pods_VideoStreamClient_VideoStreamClientUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoStreamClient_VideoStreamClientUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DE17E4C2531CB448EF5E7CC /* Pods_VideoStreamClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				579EF84393BE63E244C8EF35 /* Pods_VideoStreamClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,12 +86,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				476735B9A1C637CB60A7AADB /* Pods_VideoStreamClient_VideoStreamClientUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37AF37B02CFCA560D0C86ABD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5CD49E0692675C501066B991 /* Pods_VideoStreamClient.framework */,
+				D27A4B8F5D7BB30E1B01A3F4 /* Pods_VideoStreamClient_VideoStreamClientUITests.framework */,
+				2F08E2D6098388E14F167F45 /* Pods_VideoStreamClientTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7450291C4AF06BF05B228D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CEA2D334B0E9F06992F4286C /* Pods-VideoStreamClient.debug.xcconfig */,
+				D20ABF3B54312FD6D0557960 /* Pods-VideoStreamClient.release.xcconfig */,
+				4581A8EF21CCF37EBE724A92 /* Pods-VideoStreamClient-VideoStreamClientUITests.debug.xcconfig */,
+				297355F841A0CF36FF5BF0E4 /* Pods-VideoStreamClient-VideoStreamClientUITests.release.xcconfig */,
+				AF7D81ACB2DC586A01D195EA /* Pods-VideoStreamClientTests.debug.xcconfig */,
+				6629861AB634A0CF9A41A171 /* Pods-VideoStreamClientTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B75AAB3A298F31D900F91C21 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +123,8 @@
 				B75AAB56298F31DC00F91C21 /* VideoStreamClientTests */,
 				B75AAB60298F31DC00F91C21 /* VideoStreamClientUITests */,
 				B75AAB44298F31D900F91C21 /* Products */,
+				B7450291C4AF06BF05B228D9 /* Pods */,
+				37AF37B02CFCA560D0C86ABD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,10 +141,14 @@
 		B75AAB45298F31D900F91C21 /* VideoStreamClient */ = {
 			isa = PBXGroup;
 			children = (
+				B715C30C29D81B8600E09095 /* Info.plist */,
 				B75AAB46298F31D900F91C21 /* VideoStreamClientApp.swift */,
 				B75AAB48298F31D900F91C21 /* ContentView.swift */,
 				B75AAB4A298F31DC00F91C21 /* Assets.xcassets */,
 				B75AAB4C298F31DC00F91C21 /* Preview Content */,
+				B75AAB70298F36AF00F91C21 /* TCPClient.swift */,
+				B715C30F29D8222C00E09095 /* VideoPreviewView.swift */,
+				B715C31129D8E2B900E09095 /* Utils.swift */,
 			);
 			path = VideoStreamClient;
 			sourceTree = "<group>";
@@ -134,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B75AAB67298F31DC00F91C21 /* Build configuration list for PBXNativeTarget "VideoStreamClient" */;
 			buildPhases = (
+				5F1A8C1D3590DBB5B06C4337 /* [CP] Check Pods Manifest.lock */,
 				B75AAB3F298F31D900F91C21 /* Sources */,
 				B75AAB40298F31D900F91C21 /* Frameworks */,
 				B75AAB41298F31D900F91C21 /* Resources */,
+				ED77A175FF615597E5AF91DE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +204,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B75AAB6A298F31DC00F91C21 /* Build configuration list for PBXNativeTarget "VideoStreamClientTests" */;
 			buildPhases = (
+				4E1F1D8450B45705F7F0A43F /* [CP] Check Pods Manifest.lock */,
 				B75AAB4F298F31DC00F91C21 /* Sources */,
 				B75AAB50298F31DC00F91C21 /* Frameworks */,
 				B75AAB51298F31DC00F91C21 /* Resources */,
@@ -169,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B75AAB6D298F31DC00F91C21 /* Build configuration list for PBXNativeTarget "VideoStreamClientUITests" */;
 			buildPhases = (
+				9AE9618AADE1A99F4B8DECB4 /* [CP] Check Pods Manifest.lock */,
 				B75AAB59298F31DC00F91C21 /* Sources */,
 				B75AAB5A298F31DC00F91C21 /* Frameworks */,
 				B75AAB5B298F31DC00F91C21 /* Resources */,
+				665943334AD04F924E9B3F4A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,13 +308,119 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4E1F1D8450B45705F7F0A43F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VideoStreamClientTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F1A8C1D3590DBB5B06C4337 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VideoStreamClient-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		665943334AD04F924E9B3F4A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoStreamClient-VideoStreamClientUITests/Pods-VideoStreamClient-VideoStreamClientUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoStreamClient-VideoStreamClientUITests/Pods-VideoStreamClient-VideoStreamClientUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoStreamClient-VideoStreamClientUITests/Pods-VideoStreamClient-VideoStreamClientUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AE9618AADE1A99F4B8DECB4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VideoStreamClient-VideoStreamClientUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED77A175FF615597E5AF91DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoStreamClient/Pods-VideoStreamClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoStreamClient/Pods-VideoStreamClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoStreamClient/Pods-VideoStreamClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B75AAB3F298F31D900F91C21 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B715C31229D8E2B900E09095 /* Utils.swift in Sources */,
 				B75AAB49298F31D900F91C21 /* ContentView.swift in Sources */,
+				B715C31029D8222C00E09095 /* VideoPreviewView.swift in Sources */,
 				B75AAB47298F31D900F91C21 /* VideoStreamClientApp.swift in Sources */,
+				B75AAB71298F36AF00F91C21 /* TCPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,20 +573,28 @@
 		};
 		B75AAB68298F31DC00F91C21 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEA2D334B0E9F06992F4286C /* Pods-VideoStreamClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoStreamClient/Preview Content\"";
 				DEVELOPMENT_TEAM = R8JUJ5P5N7;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VideoStreamClient/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need your camera";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Need to connect to server";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Honestly why not";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,6 +602,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = endian.VideoStreamClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,6 +611,7 @@
 		};
 		B75AAB69298F31DC00F91C21 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D20ABF3B54312FD6D0557960 /* Pods-VideoStreamClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -448,12 +620,18 @@
 				DEVELOPMENT_ASSET_PATHS = "\"VideoStreamClient/Preview Content\"";
 				DEVELOPMENT_TEAM = R8JUJ5P5N7;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VideoStreamClient/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need your camera";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Need to connect to server";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Honestly why not";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,6 +647,7 @@
 		};
 		B75AAB6B298F31DC00F91C21 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF7D81ACB2DC586A01D195EA /* Pods-VideoStreamClientTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -489,6 +668,7 @@
 		};
 		B75AAB6C298F31DC00F91C21 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6629861AB634A0CF9A41A171 /* Pods-VideoStreamClientTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -509,6 +689,7 @@
 		};
 		B75AAB6E298F31DC00F91C21 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4581A8EF21CCF37EBE724A92 /* Pods-VideoStreamClient-VideoStreamClientUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -527,6 +708,7 @@
 		};
 		B75AAB6F298F31DC00F91C21 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 297355F841A0CF36FF5BF0E4 /* Pods-VideoStreamClient-VideoStreamClientUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
