@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @State var ipaddress: String = ""
+    @State var port: String = ""
     
     var body: some View {
         VStack {
@@ -33,7 +34,7 @@ struct SettingView: View {
                         .frame(height: 28)
                         .padding(/*@START_MENU_TOKEN@*/.all, 6.0/*@END_MENU_TOKEN@*/)
                         .fixedSize()
-                    TextField("Port", text: $ipaddress)
+                    TextField("Port", text: $port)
                         .frame(height: 28)
                         .padding(/*@START_MENU_TOKEN@*/.all, 6.0/*@END_MENU_TOKEN@*/)
                         .fixedSize()
@@ -42,6 +43,10 @@ struct SettingView: View {
             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, alignment: .topLeading)
             .fixedSize(horizontal: false, vertical: true)
+            Button("Update Settings") {
+                // Update Settings
+                // TODO: Add validation, checking, and toast w/ status update
+            }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,
                maxHeight: .infinity, alignment: .topLeading)
