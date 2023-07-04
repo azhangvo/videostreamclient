@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                HostedViewController().ignoresSafeArea()
                 VStack(alignment: .leading) {
                     NavigationLink(destination: SettingView()) {
                         Text("Settings")
