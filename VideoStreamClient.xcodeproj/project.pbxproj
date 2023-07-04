@@ -14,6 +14,7 @@
 		B75AAB58298F31DC00F91C21 /* VideoStreamClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB57298F31DC00F91C21 /* VideoStreamClientTests.swift */; };
 		B75AAB62298F31DC00F91C21 /* VideoStreamClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB61298F31DC00F91C21 /* VideoStreamClientUITests.swift */; };
 		B75AAB64298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB63298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift */; };
+		B78FC47F2A539752005664A9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FC47E2A539752005664A9 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		B75AAB5D298F31DC00F91C21 /* VideoStreamClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoStreamClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75AAB61298F31DC00F91C21 /* VideoStreamClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamClientUITests.swift; sourceTree = "<group>"; };
 		B75AAB63298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamClientUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B78FC47E2A539752005664A9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				B75AAB46298F31D900F91C21 /* VideoStreamClientApp.swift */,
 				B75AAB48298F31D900F91C21 /* ContentView.swift */,
+				B78FC47E2A539752005664A9 /* SettingView.swift */,
 				B75AAB4A298F31DC00F91C21 /* Assets.xcassets */,
 				B75AAB4C298F31DC00F91C21 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B78FC47F2A539752005664A9 /* SettingView.swift in Sources */,
 				B75AAB49298F31D900F91C21 /* ContentView.swift in Sources */,
 				B75AAB47298F31D900F91C21 /* VideoStreamClientApp.swift in Sources */,
 			);

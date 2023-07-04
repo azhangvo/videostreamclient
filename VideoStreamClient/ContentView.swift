@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 VStack(alignment: .leading) {
-                    NavigationLink(destination: Text("Another view")) {
+                    NavigationLink(destination: SettingView()) {
                         Text("Settings")
                             .foregroundColor(Color.blue)
                             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
