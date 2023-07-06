@@ -9,11 +9,14 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var permissionGranted = false
     
     private let captureSession = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "sessionQueue")
+    private let videoDataOutputQueue = DispatchQueue(label: "videoDataOutputQueue")
+    
+    private let ciContext = CIContext()
     
     private var previewLayer = AVCaptureVideoPreviewLayer()
     var screenRect : CGRect! = nil
@@ -56,6 +59,12 @@ class ViewController: UIViewController {
         guard captureSession.canAddInput(videoDeviceInput) else { return }
         captureSession.addInput(videoDeviceInput)
         
+        let output = AVCaptureVideoDataOutput()
+        output.alwaysDiscardsLateVideoFrames = true
+        output.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
+        guard captureSession.canAddOutput(output) else { return }
+        captureSession.addOutput(output)
+        
         screenRect = UIScreen.main.bounds
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -67,6 +76,15 @@ class ViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self!.view.layer.addSublayer(self!.previewLayer)
         }
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        print("output captured")
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        let ciImage: CIImage = CIImage(cvPixelBuffer: imageBuffer)
+        guard let cgImage: CGImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return }
+        let uiImage: UIImage = UIImage(cgImage: cgImage)
+        let data: Data = uiImage.pngData()
     }
 }
 
