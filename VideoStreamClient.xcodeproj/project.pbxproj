@@ -16,6 +16,8 @@
 		B75AAB64298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75AAB63298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift */; };
 		B78FC47F2A539752005664A9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FC47E2A539752005664A9 /* SettingView.swift */; };
 		B78FC4832A53A414005664A9 /* HostedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FC4822A53A414005664A9 /* HostedViewController.swift */; };
+		B78FC4882A57B38B005664A9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FC4872A57B38B005664A9 /* DataController.swift */; };
+		B78FC4902A57C861005664A9 /* ServerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B78FC48E2A57C861005664A9 /* ServerModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		B75AAB63298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamClientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B78FC47E2A539752005664A9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		B78FC4822A53A414005664A9 /* HostedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostedViewController.swift; sourceTree = "<group>"; };
+		B78FC4872A57B38B005664A9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		B78FC48F2A57C861005664A9 /* ServerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ServerModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 		B75AAB45298F31D900F91C21 /* VideoStreamClient */ = {
 			isa = PBXGroup;
 			children = (
+				B78FC4892A57B97E005664A9 /* DataModel */,
 				B75AAB46298F31D900F91C21 /* VideoStreamClientApp.swift */,
 				B78FC4822A53A414005664A9 /* HostedViewController.swift */,
 				B75AAB48298F31D900F91C21 /* ContentView.swift */,
@@ -131,6 +136,15 @@
 				B75AAB63298F31DC00F91C21 /* VideoStreamClientUITestsLaunchTests.swift */,
 			);
 			path = VideoStreamClientUITests;
+			sourceTree = "<group>";
+		};
+		B78FC4892A57B97E005664A9 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B78FC4872A57B38B005664A9 /* DataController.swift */,
+				B78FC48E2A57C861005664A9 /* ServerModel.xcdatamodeld */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +278,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B78FC47F2A539752005664A9 /* SettingView.swift in Sources */,
+				B78FC4882A57B38B005664A9 /* DataController.swift in Sources */,
 				B75AAB49298F31D900F91C21 /* ContentView.swift in Sources */,
 				B75AAB47298F31D900F91C21 /* VideoStreamClientApp.swift in Sources */,
+				B78FC4902A57C861005664A9 /* ServerModel.xcdatamodeld in Sources */,
 				B78FC4832A53A414005664A9 /* HostedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +369,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -407,7 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -593,6 +609,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B78FC48E2A57C861005664A9 /* ServerModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B78FC48F2A57C861005664A9 /* ServerModel.xcdatamodel */,
+			);
+			currentVersion = B78FC48F2A57C861005664A9 /* ServerModel.xcdatamodel */;
+			path = ServerModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B75AAB3B298F31D900F91C21 /* Project object */;
 }

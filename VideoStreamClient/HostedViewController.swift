@@ -84,7 +84,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let ciImage: CIImage = CIImage(cvPixelBuffer: imageBuffer)
         guard let cgImage: CGImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return }
         let uiImage: UIImage = UIImage(cgImage: cgImage)
-        let data: Data = uiImage.pngData()
+        guard let data: Data = uiImage.pngData() else { return }
+        
+        
     }
 }
 
