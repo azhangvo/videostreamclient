@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import SwiftyZeroMQ5
 
 struct SettingView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: []) var servers: FetchedResults<Server>
     
-    @State var ipaddress: String = ""
-    @State var port: String = ""
+    @AppStorage("ipaddress") private var storageIpAddress: String = ""
+    @AppStorage("port") private var storagePort: Int = 8001
+    
+    @State private var ipaddress: String = ""
+    @State private var port: String = "8001"
     
     var body: some View {
         VStack {
@@ -48,7 +52,7 @@ struct SettingView: View {
             .fixedSize(horizontal: false, vertical: true)
             Button("Update Settings") {
                 // Update Settings
-                // TODO: Add validation, checking, and toast w/ status update
+                // TODO: Add toast w/ status update
                 
                 let urlOrIpRegex = /^(http(s?):\/\/)?(((www\.)?+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+)|(\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/
                 
@@ -67,20 +71,24 @@ struct SettingView: View {
                     return
                 }
                 
-                DataController().editServer(server: servers.first!, ip: ipaddress, port: portValue, context: managedObjContext)
+//                DataController().editServer(server: servers.first!, ip: ipaddress, port: portValue, context: managedObjContext)
+                UserDefaults.standard.set(ipaddress, forKey: "ipaddress")
+                UserDefaults.standard.set(portValue, forKey: "port")
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,
                maxHeight: .infinity, alignment: .topLeading)
         .navigationTitle(Text("Settings"))
         .onAppear {
-            if(servers.count == 0) {
-                DataController().addServer(context: managedObjContext)
-                port = "8001"
-            } else {
-                ipaddress = servers.first?.ip ?? ""
-                port = String(Int(servers.first?.port ?? 8001))
-            }
+//            if(servers.count == 0) {
+//                DataController().addServer(context: managedObjContext)
+//                port = "8001"
+//            } else {
+//                ipaddress = servers.first?.ip ?? ""
+//                port = String(Int(servers.first?.port ?? 8001))
+//            }
+            ipaddress = storageIpAddress
+            port = String(storagePort)
         }
         
     }

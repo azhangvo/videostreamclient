@@ -8,8 +8,12 @@
 import Foundation
 import SwiftUI
 import AVFoundation
+import Combine
 
-class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ObservableObject {
+    private var ip_address: String = ""
+    private var port: Int = 8001
+    
     private var permissionGranted = false
     
     private let captureSession = AVCaptureSession()
@@ -21,6 +25,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var previewLayer = AVCaptureVideoPreviewLayer()
     var screenRect : CGRect! = nil
     
+    private var cancelable: AnyCancellable?
+    private var cancelable2: AnyCancellable?
+    
     override func viewDidLoad() {
         checkPermission()
         
@@ -29,6 +36,23 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             self.setupCaptureSession()
             self.captureSession.startRunning()
         }
+        
+        cancelable = UserDefaults.standard.publisher(for: \.ipaddress)
+            .sink(receiveValue: { [weak self] newValue in
+                guard let self = self else { return }
+                if newValue != self.ip_address { // avoid cycling !!
+                    self.ip_address = newValue
+                    print(self.ip_address)
+                }
+            })
+        cancelable2 = UserDefaults.standard.publisher(for: \.port)
+            .sink(receiveValue: { [weak self] newValue in
+                guard let self = self else { return }
+                if newValue != self.port { // avoid cycling !!
+                    self.port = newValue
+                    print(self.port)
+                }
+            })
     }
     
     func checkPermission() {
@@ -97,5 +121,17 @@ struct HostedViewController: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         
+    }
+}
+
+extension UserDefaults {
+    @objc dynamic var ipaddress: String {
+        get { string(forKey: "ipaddress") ?? "" }
+        set { setValue(newValue, forKey: "ipaddress") }
+    }
+    
+    @objc dynamic var port: Int {
+        get { integer(forKey: "port") }
+        set { setValue(newValue, forKey: "port") }
     }
 }
