@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import AVFoundation
 import Combine
+import SwiftyZeroMQ5
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ObservableObject {
     private var ip_address: String = ""
@@ -24,6 +25,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     private var previewLayer = AVCaptureVideoPreviewLayer()
     var screenRect : CGRect! = nil
+    
+    private var zmqContext: SwiftyZeroMQ.Context = try! SwiftyZeroMQ.Context()
+    private var zmqSocket: SwiftyZeroMQ.Socket {
+        try! zmqContext.socket(.pair)
+    }
     
     private var cancelable: AnyCancellable?
     private var cancelable2: AnyCancellable?
@@ -42,7 +48,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 guard let self = self else { return }
                 if newValue != self.ip_address { // avoid cycling !!
                     self.ip_address = newValue
-                    print(self.ip_address)
+                    self.setupSocket()
                 }
             })
         cancelable2 = UserDefaults.standard.publisher(for: \.port)
@@ -50,9 +56,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 guard let self = self else { return }
                 if newValue != self.port { // avoid cycling !!
                     self.port = newValue
-                    print(self.port)
+                    self.setupSocket()
                 }
             })
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+//            self?.setupSocket()
+//        }
     }
     
     func checkPermission() {
@@ -102,8 +112,38 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
+    func setupSocket() {
+        let urlOrIpRegex = /^(http(s?):\/\/)?(((www\.)?+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+)|(\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/
+        
+        if(!ip_address.contains(urlOrIpRegex)) {
+            print("Invalid IP, not starting socket")
+            return
+        }
+        
+        if(port < 0 || port > 65535) {
+            print("Invalid port, not starting socket")
+            return
+        }
+        
+        let uri = "tcp://\(ip_address):\(port)"
+        print("Connecting to \(uri)")
+        
+//        try! zmqSocket.close()
+        do {
+            try zmqSocket.connect(uri)
+            print("Should be connected")
+            
+            try zmqSocket.send(string: "Your mom")
+            
+            let reply = try zmqSocket.recv()
+            print("Reply: \(reply ?? "Nothing")")
+        } catch {
+            print("Error: \(error)")
+        }
+    }
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print("output captured")
+//        print("output captured")
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         let ciImage: CIImage = CIImage(cvPixelBuffer: imageBuffer)
         guard let cgImage: CGImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return }
