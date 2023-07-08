@@ -26,12 +26,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var previewLayer = AVCaptureVideoPreviewLayer()
     var screenRect : CGRect! = nil
     
-//    private var zmqContext: SwiftyZeroMQ.Context = try! SwiftyZeroMQ.Context()
-//    private var zmqSocket: SwiftyZeroMQ.Socket {
-//        try! zmqContext.socket(.pair)
-//    }
+    //    private var zmqContext: SwiftyZeroMQ.Context = try! SwiftyZeroMQ.Context()
+    //    private var zmqSocket: SwiftyZeroMQ.Socket {
+    //        try! zmqContext.socket(.pair)
+    //    }
     private var zmqContext: SwiftyZeroMQ.Context?
-        private var zmqSocket: SwiftyZeroMQ.Socket?
+    private var zmqSocket: SwiftyZeroMQ.Socket?
+    
+    private var zmqThread: Thread?
     
     private var cancelable: AnyCancellable?
     private var cancelable2: AnyCancellable?
@@ -51,10 +53,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 if newValue != self.ip_address { // avoid cycling !!
                     print(newValue)
                     self.ip_address = newValue
-                    DispatchQueue.main.async { [weak self] in
-                        print("Running")
-                        self?.setupSocket()
-                    }
+                    self.setupSocket()
                 }
             })
         cancelable2 = UserDefaults.standard.publisher(for: \.port)
@@ -63,15 +62,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 if newValue != self.port { // avoid cycling !!
                     print(newValue)
                     self.port = newValue
-                    self.sessionQueue.async { [weak self] in
-                        self?.setupSocket()
-                    }
+                    self.setupSocket()
                 }
             })
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-//            self?.setupSocket()
-//        }
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+        //            self?.setupSocket()
+        //        }
     }
     
     func checkPermission() {
@@ -122,6 +119,17 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func setupSocket() {
+        if(zmqThread != nil) {
+            try? zmqSocket?.close()
+            zmqThread?.cancel()
+        }
+        
+        zmqThread = Thread.init(target: self, selector: #selector(runSocket), object: nil)
+        zmqThread?.start()
+    }
+    
+    @objc
+    func runSocket() {
         let urlOrIpRegex = /^(http(s?):\/\/)?(((www\.)?+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+)|(\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/
         
         if(!ip_address.contains(urlOrIpRegex)) {
@@ -137,9 +145,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let uri = "tcp://\(ip_address):\(port)"
         print("Connecting to \(uri)")
         
-//        try! zmqSocket.close()
         do {
-            zmqContext = try SwiftyZeroMQ.Context()
+            if(zmqContext == nil) {
+                zmqContext = try SwiftyZeroMQ.Context()
+            }
             zmqSocket = try zmqContext?.socket(.pair)
             
             try zmqSocket?.connect(uri)
@@ -152,22 +161,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         } catch {
             print("Error: \(error)")
         }
-        
-//        do {
-//            try zmqSocket.connect(uri)
-//            print("Should be connected")
-//
-//            try zmqSocket.send(string: "Your mom")
-//
-//            let reply = try zmqSocket.recv()
-//            print("Reply: \(reply ?? "Nothing")")
-//        } catch {
-//            print("Error: \(error)")
-//        }
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//        print("output captured")
+        //        print("output captured")
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         let ciImage: CIImage = CIImage(cvPixelBuffer: imageBuffer)
         guard let cgImage: CGImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return }
