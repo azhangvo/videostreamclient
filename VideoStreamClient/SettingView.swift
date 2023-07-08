@@ -71,7 +71,6 @@ struct SettingView: View {
                     return
                 }
                 
-//                DataController().editServer(server: servers.first!, ip: ipaddress, port: portValue, context: managedObjContext)
                 UserDefaults.standard.set(ipaddress, forKey: "ipaddress")
                 UserDefaults.standard.set(portValue, forKey: "port")
             }
@@ -80,13 +79,6 @@ struct SettingView: View {
                maxHeight: .infinity, alignment: .topLeading)
         .navigationTitle(Text("Settings"))
         .onAppear {
-//            if(servers.count == 0) {
-//                DataController().addServer(context: managedObjContext)
-//                port = "8001"
-//            } else {
-//                ipaddress = servers.first?.ip ?? ""
-//                port = String(Int(servers.first?.port ?? 8001))
-//            }
             ipaddress = storageIpAddress
             port = String(storagePort)
         }

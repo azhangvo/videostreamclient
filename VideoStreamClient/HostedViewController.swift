@@ -26,14 +26,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var previewLayer = AVCaptureVideoPreviewLayer()
     var screenRect : CGRect! = nil
     
-    //    private var zmqContext: SwiftyZeroMQ.Context = try! SwiftyZeroMQ.Context()
-    //    private var zmqSocket: SwiftyZeroMQ.Socket {
-    //        try! zmqContext.socket(.pair)
-    //    }
     private var zmqContext: SwiftyZeroMQ.Context?
     private var zmqSocket: SwiftyZeroMQ.Socket?
     
     private var zmqThread: Thread?
+    
+    private var shouldTransmit: Bool = false
     
     private var cancelable: AnyCancellable?
     private var cancelable2: AnyCancellable?
@@ -65,10 +63,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                     self.setupSocket()
                 }
             })
-        
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-        //            self?.setupSocket()
-        //        }
     }
     
     func checkPermission() {
@@ -152,26 +146,35 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             zmqSocket = try zmqContext?.socket(.pair)
             
             try zmqSocket?.connect(uri)
-            print("Should be connected")
             
-            try zmqSocket?.send(string: "Your mom")
+            print("Requesting connection")
+            try zmqSocket?.send(string: "Requesting connection")
+            
+            print("Message transmitted")
             
             let reply = try zmqSocket?.recv()
             print("Reply: \(reply ?? "Nothing")")
+            
+            while(true) {
+                let reply2 = try zmqSocket?.recv()
+                if(reply2 == "D") {
+                    shouldTransmit = true
+                }
+            }
         } catch {
             print("Error: \(error)")
         }
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        //        print("output captured")
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        if(!shouldTransmit) { return }
         let ciImage: CIImage = CIImage(cvPixelBuffer: imageBuffer)
         guard let cgImage: CGImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return }
         let uiImage: UIImage = UIImage(cgImage: cgImage)
-        guard let data: Data = uiImage.pngData() else { return }
+        guard let data: Data = uiImage.jpegData(compressionQuality: 0.02) else { return }
         
-        
+        try? zmqSocket?.send(data: data)
     }
 }
 
