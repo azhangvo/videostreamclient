@@ -26,10 +26,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var previewLayer = AVCaptureVideoPreviewLayer()
     var screenRect : CGRect! = nil
     
-    private var zmqContext: SwiftyZeroMQ.Context = try! SwiftyZeroMQ.Context()
-    private var zmqSocket: SwiftyZeroMQ.Socket {
-        try! zmqContext.socket(.pair)
-    }
+//    private var zmqContext: SwiftyZeroMQ.Context = try! SwiftyZeroMQ.Context()
+//    private var zmqSocket: SwiftyZeroMQ.Socket {
+//        try! zmqContext.socket(.pair)
+//    }
+    private var zmqContext: SwiftyZeroMQ.Context?
+        private var zmqSocket: SwiftyZeroMQ.Socket?
     
     private var cancelable: AnyCancellable?
     private var cancelable2: AnyCancellable?
@@ -47,16 +49,23 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             .sink(receiveValue: { [weak self] newValue in
                 guard let self = self else { return }
                 if newValue != self.ip_address { // avoid cycling !!
+                    print(newValue)
                     self.ip_address = newValue
-                    self.setupSocket()
+                    DispatchQueue.main.async { [weak self] in
+                        print("Running")
+                        self?.setupSocket()
+                    }
                 }
             })
         cancelable2 = UserDefaults.standard.publisher(for: \.port)
             .sink(receiveValue: { [weak self] newValue in
                 guard let self = self else { return }
                 if newValue != self.port { // avoid cycling !!
+                    print(newValue)
                     self.port = newValue
-                    self.setupSocket()
+                    self.sessionQueue.async { [weak self] in
+                        self?.setupSocket()
+                    }
                 }
             })
         
@@ -130,16 +139,31 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
 //        try! zmqSocket.close()
         do {
-            try zmqSocket.connect(uri)
+            zmqContext = try SwiftyZeroMQ.Context()
+            zmqSocket = try zmqContext?.socket(.pair)
+            
+            try zmqSocket?.connect(uri)
             print("Should be connected")
             
-            try zmqSocket.send(string: "Your mom")
+            try zmqSocket?.send(string: "Your mom")
             
-            let reply = try zmqSocket.recv()
+            let reply = try zmqSocket?.recv()
             print("Reply: \(reply ?? "Nothing")")
         } catch {
             print("Error: \(error)")
         }
+        
+//        do {
+//            try zmqSocket.connect(uri)
+//            print("Should be connected")
+//
+//            try zmqSocket.send(string: "Your mom")
+//
+//            let reply = try zmqSocket.recv()
+//            print("Reply: \(reply ?? "Nothing")")
+//        } catch {
+//            print("Error: \(error)")
+//        }
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {

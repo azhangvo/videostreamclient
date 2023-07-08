@@ -8,24 +8,8 @@
 import SwiftUI
 import SwiftyZeroMQ5
 
-class ZMQObservable: ObservableObject {
-    @Published var context: SwiftyZeroMQ.Context?
-    @Published var socket: SwiftyZeroMQ.Socket?
-    
-    init() {
-        do {
-            let zmqcontext = try SwiftyZeroMQ.Context()
-            context = zmqcontext
-            try socket = zmqcontext.socket(.reply)
-        } catch {
-            print("Context creation failure: \(error)")
-        }
-    }
-}
-
 struct ContentView: View {
-    @ObservedObject private var zmqObservable = ZMQObservable()
-    
+
     var body: some View {
         NavigationView {
             ZStack {
