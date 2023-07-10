@@ -14,6 +14,7 @@ import SwiftyZeroMQ5
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ObservableObject {
     private var ip_address: String = ""
     private var port: Int = 8001
+    private var reset_observer: Bool = false
     
     private var permissionGranted = false
     
@@ -36,6 +37,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     private var cancelable: AnyCancellable?
     private var cancelable2: AnyCancellable?
+    private var cancelable3: AnyCancellable?
     
     override func viewDidLoad() {
         checkPermission()
@@ -61,6 +63,16 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 if newValue != self.port { // avoid cycling !!
                     print(newValue)
                     self.port = newValue
+                    self.setupSocket()
+                }
+            })
+        
+        cancelable3 = UserDefaults.standard.publisher(for: \.reset_observer)
+            .sink(receiveValue: { [weak self] newValue in
+                guard let self = self else { return }
+                if newValue != self.reset_observer { // avoid cycling !!
+                    print(newValue)
+                    self.reset_observer = newValue
                     self.setupSocket()
                 }
             })
@@ -206,5 +218,10 @@ extension UserDefaults {
     @objc dynamic var port: Int {
         get { integer(forKey: "port") }
         set { setValue(newValue, forKey: "port") }
+    }
+    
+    @objc dynamic var reset_observer: Bool {
+        get { bool(forKey: "reset_observer") }
+        set { setValue(newValue, forKey: "reset_observer") }
     }
 }
