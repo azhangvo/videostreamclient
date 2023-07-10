@@ -20,6 +20,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private let captureSession = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "sessionQueue")
     private let videoDataOutputQueue = DispatchQueue(label: "videoDataOutputQueue")
+    private let transmitQueue = DispatchQueue(label: "transmitQueue")
     
     private let ciContext = CIContext()
     
@@ -169,12 +170,20 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         if(!shouldTransmit) { return }
-        let ciImage: CIImage = CIImage(cvPixelBuffer: imageBuffer)
-        guard let cgImage: CGImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return }
-        let uiImage: UIImage = UIImage(cgImage: cgImage)
-        guard let data: Data = uiImage.jpegData(compressionQuality: 0.02) else { return }
+        shouldTransmit = false
         
-        try? zmqSocket?.send(data: data)
+        transmitQueue.async { [unowned self] in
+            let ciImage: CIImage = CIImage(cvPixelBuffer: imageBuffer)
+            guard let cgImage: CGImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return }
+            let uiImage: UIImage = UIImage(cgImage: cgImage)
+            guard let data: Data = uiImage.jpegData(compressionQuality: 0.02) else { return }
+            
+            try? self.zmqSocket?.send(data: data)
+        }
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        print("Dropped a frame!")
     }
 }
 
